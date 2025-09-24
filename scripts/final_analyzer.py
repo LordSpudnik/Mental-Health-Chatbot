@@ -113,7 +113,6 @@ if __name__ == "__main__":
         results_list.append(result)
     
     results_df = pd.DataFrame(results_list)
-    print(results_df)
     
     results_df.to_csv(output_results_path, index=False)
     
