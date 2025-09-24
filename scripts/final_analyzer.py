@@ -68,12 +68,20 @@ if __name__ == "__main__":
         sentiment_result = sentiment_pipeline(text_input)[0]
         sentiment_label = sentiment_result['label'].lower()
         confidence = round(sentiment_result['score'], 2)
-        
+
+        # Ensure sentiment_label is one of 'positive', 'negative', 'neutral'
+        if sentiment_label not in ['positive', 'negative', 'neutral']:
+            # Fallback: If model returns something unexpected, treat as neutral
+            sentiment_label = 'neutral'
+
         processed_input = preprocess_text(text_input)
         vectorized_input = vectorizer.transform([processed_input])
         custom_prediction = custom_model.predict(vectorized_input)[0]
-        
-        tone = 'high-risk' if custom_prediction == 'suicide' else 'low-risk'
+
+        if sentiment_label == 'negative':
+            tone = 'high-risk' if custom_prediction == 'suicide' else 'low-risk'
+        else:
+            tone = 'low-risk'
             
         return {
             "text": text_input,
@@ -91,7 +99,11 @@ if __name__ == "__main__":
         "Finally finished my project, what a relief! It was a good day.",
         "I am so tired of everything.",
         "This is the best moment of my life, I am so happy!",
-        "I'm not sure if this is worth it anymore."
+        "I'm not sure if this is worth it anymore.",
+        "I'm bored.",
+        "I'm good.",
+        "I'm quitting.",
+        "I went to the store to buy some groceries."
     ]
     
     # Analyze each sentence and store the result in a list
@@ -101,6 +113,7 @@ if __name__ == "__main__":
         results_list.append(result)
     
     results_df = pd.DataFrame(results_list)
+    print(results_df)
     
     results_df.to_csv(output_results_path, index=False)
     

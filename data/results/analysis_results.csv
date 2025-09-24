@@ -1,7 +1,11 @@
 text,sentiment,tone,confidence_score
 "I'm feeling really down and hopeless today, I don't think I can go on.",negative,high-risk,0.93
 "I need help, everything just feels so pointless.",negative,high-risk,0.93
-"Finally finished my project, what a relief! It was a good day.",positive,high-risk,0.98
+"Finally finished my project, what a relief! It was a good day.",positive,low-risk,0.98
 I am so tired of everything.,negative,high-risk,0.9
-"This is the best moment of my life, I am so happy!",positive,high-risk,0.99
+"This is the best moment of my life, I am so happy!",positive,low-risk,0.99
 I'm not sure if this is worth it anymore.,negative,high-risk,0.88
+I'm bored.,negative,high-risk,0.61
+I'm good.,positive,low-risk,0.82
+I'm quitting.,negative,high-risk,0.76
+I went to the store to buy some groceries.,neutral,low-risk,0.82
